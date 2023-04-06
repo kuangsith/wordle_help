@@ -11,6 +11,7 @@ if 'remaining' not in st.session_state:
 
 df = st.session_state.df
 remaining = st.session_state.remaining
+dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
 col1, col2, = st.columns(2)
@@ -20,5 +21,4 @@ with col1:
 
 with col2:
     st.write("List of possible answers.")
-    dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
-    st.dataframe(wordle_help.remaining)
+    st.dataframe(dfremain)
