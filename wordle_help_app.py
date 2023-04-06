@@ -32,7 +32,7 @@ with col1:
     updateresult = st.button('Update')
 
     st.write('Previous guess')
-    st.dataframe(st.session_state.allguess)
+    st.dataframe(allguess)
 
 with col2:
     st.write("List of best words to guess")
