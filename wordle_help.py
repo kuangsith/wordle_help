@@ -4,7 +4,9 @@ import pandas as pd
 
 #Get all permutation of length 4
 with open('low.txt', 'r') as f:
-    remaining = [line.strip() for line in f.readlines()]
+    all = [line.strip() for line in f.readlines()]
+
+remaining = all
 
 df = pd.read_csv("start_entropy.csv",index_col=0)
 
@@ -45,6 +47,7 @@ def entropy(remaining):
 
 #after playing, we can update the entropy list to see what to choose next
 def update_entropy(df,remaining):
+    outdf = df
     for nextguess in all:
         tally = {}
         for ans in remaining:
@@ -54,15 +57,15 @@ def update_entropy(df,remaining):
             else:
                 tally[colorresult] = 1
         #print(f"{nextguess} gives {tally}")
-        df['Expected entropy'][nextguess] = expected_entropy(tally)
+        outdf['Expected entropy'][nextguess] = expected_entropy(tally)
 
-    df.sort_values(by='Expected entropy',inplace=True,ascending=False)
+    outdf.sort_values(by='Expected entropy',inplace=True,ascending=False)
+    return outdf
     #dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
 #call it when you want to play the game
-def play_and_update_remaining(guess,result):
-    global remaining
+def play_and_update_remaining(guess,result,remaining):
     # guess = input("What is your guess: ")
     # result = input("What is your result: ")
 
@@ -73,8 +76,7 @@ def play_and_update_remaining(guess,result):
         if tryresult == result:
             newl.append(ans)
 
-    remaining = newl
-    dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
+    return newl
 
 # def report_all_remaining(remaining):
 #     print("List of top remaining possible answers")

@@ -27,3 +27,7 @@ with col2:
 with col3:
     st.write("List of possible answers.")
     st.dataframe(dfremain)
+
+if updateresult:
+    st.session_state.remaining = wordle_help.play_and_update_remaining(guess,result,remaining)
+    st.session_state.df = wordle_help.update_entropy(df,st.session_state.remaining)
