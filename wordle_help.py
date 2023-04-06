@@ -4,11 +4,11 @@ import pandas as pd
 
 #Get all permutation of length 4
 with open('low.txt', 'r') as f:
-    all = [line.strip() for line in f.readlines()]
+    remaining = [line.strip() for line in f.readlines()]
 
-remaining = all
+df = pd.read_csv("start_entropy.csv",index_col=0)
 
-size = len(remaining)
+
 
 
 #check for the number of common numbers
@@ -27,29 +27,24 @@ def checkcommon(inn,ans):
 
 
 #compute expected entropy from the possible outcome
-def expected_entropy(dict):
-    global remaining
+def expected_entropy(dict,remaining):
     result = 0.0
     for i in dict:
         result = result + dict[i]/len(remaining)*math.log2(1/dict[i])
     return result
 
 #compute current entropy
-def entropy():
-    global remaining
+def entropy(remaining):
     ent = math.log2(1./len(remaining))
     return ent
 
-df = pd.read_csv("start_entropy.csv",index_col=0)
-dfremain = df
 
 #We keep track of 2 data
 # remaining =  *list* of possible answers
 # df = *data frame* of expected entropy
 
 #after playing, we can update the entropy list to see what to choose next
-def update_entropy():
-    global df
+def update_entropy(df,remaining):
     for nextguess in all:
         tally = {}
         for ans in remaining:
@@ -62,7 +57,7 @@ def update_entropy():
         df['Expected entropy'][nextguess] = expected_entropy(tally)
 
     df.sort_values(by='Expected entropy',inplace=True,ascending=False)
-    dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
+    #dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
 #call it when you want to play the game
@@ -81,15 +76,12 @@ def play_and_update_remaining(guess,result):
     remaining = newl
     dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
-def report_all_remaining():
-    global remaining
-    print("List of top remaining possible answers")
-    print(dfremain.head())
+# def report_all_remaining(remaining):
+#     print("List of top remaining possible answers")
+#     print(dfremain.head())
 
 #get report
-def report():
-    global remaining
-    global df
+def report(df,remaining):
     possibleanswers =len(remaining)
     print()
     print("################################")
@@ -97,11 +89,11 @@ def report():
     print("################################")
     print()
     print(f"There are {possibleanswers} possible answers left.")
-    ent = entropy()
+    ent = entropy(remaining)
     print(f"Current entropy = {ent}")
     print("Here is the top expected entropy for the next guess")
     print(df.head())
-    report_all_remaining()
+    # report_all_remaining()
     print("################################")
     print("#####End of the report##########")
     print("################################")
