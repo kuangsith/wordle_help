@@ -8,6 +8,8 @@ if 'df' not in st.session_state:
     st.session_state.df = wordle_help.df
 if 'remaining' not in st.session_state:
     st.session_state.remaining = wordle_help.remaining
+if 'allguess' not in st.session_state:
+    st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
 
 df = st.session_state.df
 remaining = st.session_state.remaining
@@ -27,6 +29,9 @@ with col1:
     guess = st.text_input('Your guess')
     result = st.text_input('Color result','bbbbb')
     updateresult = st.button('Update')
+
+    st.write('Previous guess')
+    st.dataframe(st.session_state.allguess)
 
 with col2:
     st.write("List of best words to guess")
