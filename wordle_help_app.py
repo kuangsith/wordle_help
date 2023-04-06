@@ -45,7 +45,7 @@ with col3:
 if updateresult:
     st.session_state.remaining = wordle_help.play_and_update_remaining(guess,result,remaining)
     st.session_state.df = wordle_help.update_entropy(df,st.session_state.remaining)
-    allguess[len(allguess['Guess'])] = [guess,result]
+    allguess.append({'Guess':guess , 'Result' :result},ignore_index=True)
     st.session_state.allguess = allguess
     st.experimental_rerun()
 
