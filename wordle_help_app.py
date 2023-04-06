@@ -48,3 +48,11 @@ if updateresult:
     allguess.append({'Guess':guess,'Result':result},ignore_index=True)
     st.session_state.allguess = allguess
     st.experimental_rerun()
+
+resetplease = st.button('Reset')
+
+if resetplease:
+    st.session_state.df = wordle_help.df
+    st.session_state.remaining = wordle_help.remaining
+    st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
+    st.experimental_rerun()
