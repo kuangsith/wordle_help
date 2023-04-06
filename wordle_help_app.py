@@ -9,7 +9,7 @@ if 'df' not in st.session_state:
 if 'remaining' not in st.session_state:
     st.session_state.remaining = wordle_help.remaining
 if 'allguess' not in st.session_state:
-    st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
+    st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'],index=False)
 
 df = st.session_state.df
 remaining = st.session_state.remaining
