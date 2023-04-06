@@ -57,7 +57,7 @@ def update_entropy(df,remaining):
             else:
                 tally[colorresult] = 1
         #print(f"{nextguess} gives {tally}")
-        outdf['Expected entropy'][nextguess] = expected_entropy(tally)
+        outdf['Expected entropy'][nextguess] = expected_entropy(tally,remaining)
 
     outdf.sort_values(by='Expected entropy',inplace=True,ascending=False)
     return outdf
