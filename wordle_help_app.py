@@ -18,7 +18,7 @@ numposs = len(remaining)
 st.write("yo man!")
 
 st.header("Current stats")
-st.write(f"Current entropy is {ent} and number of possible answers is {numposs}")
+st.write(f"Current entropy is {ent:.3f} and number of possible answers is {numposs}")
 
 
 
