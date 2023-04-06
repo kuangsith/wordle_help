@@ -41,6 +41,7 @@ def entropy():
     return ent
 
 df = pd.read_csv("start_entropy.csv",index_col=0)
+dfremain = df
 
 #We keep track of 2 data
 # remaining =  *list* of possible answers
@@ -61,6 +62,7 @@ def update_entropy():
         df['Expected entropy'][nextguess] = expected_entropy(tally)
 
     df.sort_values(by='Expected entropy',inplace=True,ascending=False)
+    dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
 #call it when you want to play the game
@@ -77,12 +79,12 @@ def play_and_update_remaining(guess,result):
             newl.append(ans)
 
     remaining = newl
+    dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 def report_all_remaining():
     global remaining
     print("List of top remaining possible answers")
-    temp = df.loc[remaining] 
-    print(temp.sort_values(by='Expected entropy',ascending=False).head())
+    print(dfremain.head())
 
 #get report
 def report():
