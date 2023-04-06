@@ -14,7 +14,7 @@ remaining = st.session_state.remaining
 dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
-col1, col2, col3 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     guess = st.text_input('Your guess')
     result = st.text_input('Color result','bbbbb')
