@@ -12,6 +12,14 @@ if 'remaining' not in st.session_state:
 df = st.session_state.df
 remaining = st.session_state.remaining
 dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
+ent = wordle_help.entropy(remaining)
+numposs = len(remaining)
+
+st.write("yo man!")
+
+st.header("Current stats")
+st.write(f"Current entropy is {ent} and number of possible answers is {numposs}")
+
 
 
 col1, col2, col3 = st.columns(3)
