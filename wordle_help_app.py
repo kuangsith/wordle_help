@@ -14,11 +14,16 @@ remaining = st.session_state.remaining
 dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 
 
-col1, col2, = st.columns(2)
+col1, col2, col3 = st.columns(2)
 with col1:
+    guess = st.text_input('Your guess')
+    result = st.text_input('Color result','bbbbb')
+    updateresult = st.button('Update')
+
+with col2:
     st.write("List of best words to guess")
     st.dataframe(df)
 
-with col2:
+with col3:
     st.write("List of possible answers.")
     st.dataframe(dfremain)
