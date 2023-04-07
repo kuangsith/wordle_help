@@ -100,11 +100,11 @@ def report(df,remaining):
     print("#####End of the report##########")
     print("################################")
 
-def reset():
-    global remaining
-    global df
-    df = pd.read_csv("start_entropy.csv",index_col=0)
-    remaining = all
+# def reset():
+#     global remaining
+#     global df
+#     df = pd.read_csv("start_entropy.csv",index_col=0)
+#     remaining = all
 
 
 # report()
