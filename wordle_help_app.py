@@ -3,12 +3,13 @@ import pandas as pd
 import wordle_help
 
 st.header("Wordle Helping tool! Never go over 6 again!")
-with open('listofwordlewords.txt', 'r') as f:
-    all = [line.strip() for line in f.readlines()]
+
 
 if 'df' not in st.session_state:
     st.session_state.df = pd.read_csv("start_entropyv2.csv",index_col=0)
 if 'remaining' not in st.session_state:
+    with open('listofwordlewords.txt', 'r') as f:
+        all = [line.strip() for line in f.readlines()]
     st.session_state.remaining = all
 if 'allguess' not in st.session_state:
     st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
@@ -42,7 +43,6 @@ with col2:
 
 with col3:
     st.write("List of possible answers.")
-    st.write(allguess)
     st.dataframe(dfremain)
 
 if updateresult:
@@ -56,6 +56,8 @@ resetplease = st.button('Reset')
 
 if resetplease:
     st.session_state.df = pd.read_csv("start_entropy.csv",index_col=0)
+    with open('listofwordlewords.txt', 'r') as f:
+        all = [line.strip() for line in f.readlines()]
     st.session_state.remaining = all
     st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
     st.experimental_rerun()
