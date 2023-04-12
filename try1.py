@@ -2,6 +2,7 @@ import pandas as pd
 
 df = pd.DataFrame(data = [],columns = ['Guess','Result'])
 
-df = df.append({'Guess':"guess 1" , 'Result' :"result 1"},ignore_index=True)
+for i in range(10):
+    df = df.append({'Guess':f"guess {i}" , 'Result' :f"result {i}"},ignore_index=True)
 
-print(df)
+print(df.loc[[1,2,3,11]])

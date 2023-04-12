@@ -17,7 +17,7 @@ if 'allguess' not in st.session_state:
 df = st.session_state.df
 remaining = st.session_state.remaining
 allguess = st.session_state.allguess
-#dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
+dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 ent = wordle_help.entropy(remaining)
 numposs = len(remaining)
 
@@ -43,8 +43,7 @@ with col2:
 
 with col3:
     st.write("List of possible answers.")
-    st.dataframe(remaining)
-    #st.dataframe(dfremain)
+    st.dataframe(dfremain)
 
 if updateresult:
     st.session_state.remaining = wordle_help.play_and_update_remaining(guess,result,remaining)

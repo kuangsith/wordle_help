@@ -1,7 +1,10 @@
-import try1
+with open('listofwordlewords.txt', 'r') as f:
+        list1 = [line.strip() for line in f.readlines()]
 
-print(try1.a)
+with open('low.txt', 'r') as f:
+        list2 = [line.strip() for line in f.readlines()]
 
-try1.a = try1.a+1
-
-print(try1.a)
+for word in list1:
+    if not(word in list2):
+        print(word)
+        
