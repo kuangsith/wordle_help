@@ -55,7 +55,7 @@ if updateresult:
 resetplease = st.button('Reset')
 
 if resetplease:
-    st.session_state.df = pd.read_csv("start_entropy.csv",index_col=0)
+    st.session_state.df = pd.read_csv("start_entropyv2.csv",index_col=0)
     with open('listofwordlewords.txt', 'r') as f:
         all = [line.strip() for line in f.readlines()]
     st.session_state.remaining = all
