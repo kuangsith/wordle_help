@@ -12,7 +12,7 @@ if 'remaining' not in st.session_state:
     st.session_state.remaining = all
 if 'allguess' not in st.session_state:
     st.session_state.allguess = pd.DataFrame(data = [],columns = ['Guess','Result'])
-#
+
 df = st.session_state.df
 remaining = st.session_state.remaining
 allguess = st.session_state.allguess
@@ -48,7 +48,7 @@ with col3:
 if updateresult:
     st.session_state.remaining = wordle_help.play_and_update_remaining(guess,result,remaining)
     st.session_state.df = wordle_help.update_entropy(df,st.session_state.remaining)
-    allguess.append({'Guess':guess , 'Result' :result},ignore_index=True)
+    allguess = allguess.append({'Guess':guess , 'Result' :result},ignore_index=True)
     st.session_state.allguess = allguess
     st.experimental_rerun()
 
