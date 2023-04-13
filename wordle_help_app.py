@@ -22,7 +22,8 @@ ent = wordle_help.entropy(remaining)
 numposs = len(remaining)
 
 with st.expander("How to use:"):
-    st.write("List of best words to gues = list of all words you can put in as your guess. Note that most of the words on the list are not possible answers to wordle game. The list is sorted by the information you would gain by guessing that word.")
+    st.write("List of best words to guess = list of all words you can put in as your guess. Note that most of the words on the list are not possible answers to wordle game. The list is sorted by the information you would gain by guessing that word.")
+    st.write("List of possible answers = list of remaining possible answers based on your previos guess. The list is sorted by the information you would gain by guessing that word.")
 
 
 st.header("Current stats")
