@@ -24,7 +24,10 @@ numposs = len(remaining)
 with st.expander("How to use:"):
     st.write("List of best words to guess = list of all words you can put in as your guess. Note that most of the words on the list are not possible answers to wordle game. The list is sorted by the information you would gain by guessing that word.")
     st.write("List of possible answers = list of remaining possible answers based on your previos guess. The list is sorted by the information you would gain by guessing that word.")
-
+    st.write(r"Put in your guess in 'your guess' and put in the result the game gave to you in 'color result'")
+    st.write(r"For the color result, put in 'b' for black, 'y' for yellow, and 'g' for green at each position. For example, if the result is as shown below:")
+    st.image('raise.png')
+    st.write(r"you would put in ygbbb in 'color result'")
 
 st.header("Current stats")
 st.write(f"Current entropy is {ent:.3f} and number of possible answers is {numposs}")
