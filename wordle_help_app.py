@@ -21,7 +21,9 @@ dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 ent = wordle_help.entropy(remaining)
 numposs = len(remaining)
 
-st.write("yo man!")
+with st.expander("How to use:"):
+    st.write("List of best words to gues = list of all words you can put in as your guess. Note that most of the words on the list are not possible answers to wordle game. The list is sorted by the information you would gain by guessing that word.")
+
 
 st.header("Current stats")
 st.write(f"Current entropy is {ent:.3f} and number of possible answers is {numposs}")
