@@ -33,12 +33,12 @@ def checkcommon(inn,ans):
 def expected_entropy(dict,remaining):
     result = 0.0
     for i in dict:
-        result = result + dict[i]/len(remaining)*math.log2(1/dict[i])
+        result = result - dict[i]/len(remaining)*math.log2(1/dict[i])
     return result
 
 #compute current entropy
 def entropy(remaining):
-    ent = math.log2(1./len(remaining))
+    ent = -math.log2(1./len(remaining))
     return ent
 
 
@@ -60,7 +60,7 @@ def update_entropy(df,remaining):
         #print(f"{nextguess} gives {tally}")
         outdf['Expected entropy'][nextguess] = expected_entropy(tally,remaining)
 
-    outdf.sort_values(by='Expected entropy',inplace=True,ascending=False)
+    outdf.sort_values(by='Expected entropy',inplace=True,ascending=True)
     return outdf
     #dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
 

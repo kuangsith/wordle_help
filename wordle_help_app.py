@@ -17,7 +17,7 @@ if 'allguess' not in st.session_state:
 df = st.session_state.df
 remaining = st.session_state.remaining
 allguess = st.session_state.allguess
-dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=False)
+dfremain = df.loc[remaining].sort_values(by='Expected entropy',ascending=True)
 ent = wordle_help.entropy(remaining)
 numposs = len(remaining)
 
