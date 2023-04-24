@@ -21,7 +21,8 @@ def checkcommon(inn,ans):
         if inn[l] == temp[l]:
             out[l] = 'g'
             temp[l] = '0'
-        elif inn[l] in temp:
+    for l in range(5):
+        if inn[l] in temp and out[l]=='b':
             out[l] = 'y'
             temp[temp.index(inn[l])] = '0'
     return ''.join(out)
